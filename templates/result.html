@@ -17,12 +17,11 @@
                 <h2>Your dominant learning style is: {{ dominant_style }}</h2>
                 <p>Here are your scores:</p>
                 <ul>
-                    <li>Active: {{ scores['Active'] }}</li>
-                    <li>Reflective: {{ scores['Reflective'] }}</li>
-                    <li>Theoretical: {{ scores['Theoretical'] }}</li>
-                    <li>Practical: {{ scores['Practical'] }}</li>
-                    <li>Combination : {{ scores['Combination'] }}</li>
-
+                    <li><a href="{{ url_for('active') }}">Active</a>: {{ scores['Active'] }}</li>
+                    <li><a href="{{ url_for('reflective') }}">Reflective</a>: {{ scores['Reflective'] }}</li>
+                    <li><a href="{{ url_for('theoretical') }}">Theoretical</a>: {{ scores['Theoretical'] }}</li>
+                    <li><a href="{{ url_for('practical') }}">Practical</a>: {{ scores['Practical'] }}</li>
+                    <li><a href="{{ url_for('combination') }}">Combination</a>: {{ scores['Combination'] }}</li>
                 </ul>
             </div>
 

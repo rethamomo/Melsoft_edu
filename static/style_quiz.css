@@ -96,11 +96,11 @@ button:hover {
     background-color: #4cae4c;
 }
 
-.result {
+.result, .study-methods{
     margin-top: 10px; /* Reduced margin */
 }
 
-.result h2 {
+.result h2, study-methods h2 {
     font-size: 1.5em;
     color: #333;
 }

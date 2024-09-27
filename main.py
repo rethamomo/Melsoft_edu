@@ -132,5 +132,25 @@ def dashboard():
     return render_template('dashboard.html')
 
 
+@app.route('/active')
+def active():
+    return render_template('active.html')
+
+@app.route('/reflective')
+def reflective():
+    return render_template('reflective.html')
+
+@app.route('/theoretical')
+def theoretical():
+    return render_template('theoretical.html')
+
+@app.route('/practical')
+def practical():
+    return render_template('practical.html')
+
+@app.route('/combination')
+def combination():
+    return render_template('combination.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
