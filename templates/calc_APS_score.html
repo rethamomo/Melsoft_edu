@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate your APS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculate your APS</h1>
+        <form id="apsForm">
+            <div class="form-group">
+                <label for="subject1">Subject 1:</label>
+                <select id="subject1" name="subject1" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject1Score" name="subject1Score" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="subject2">Subject 2:</label>
+                <select id="subject2" name="subject2" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject2Score" name="subject2Score" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="subject3">Subject 3:</label>
+                <select id="subject3" name="subject3" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject3Score" name="subject3Score" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="subject4">Subject 4:</label>
+                <select id="subject4" name="subject4" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject4Score" name="subject4Score" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="subject5">Subject 5:</label>
+                <select id="subject5" name="subject5" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject5Score" name="subject5Score" min="0" max="10" required>
+            </div>
+            <div class="form-group">
+                <label for="subject6">Subject 6:</label>
+                <select id="subject6" name="subject6" required>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="English HL">English HL</option>
+                    <option value="English FAL">English FAL</option>
+                    <option value="Afrikaans FAL">Afrikaans FAL</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Life Science">Life Science</option>
+                    <option value="Math Literacy">Math Literacy</option>
+                    <option value="Geography">Geography</option>
+                    <option value="Accounting">Accounting</option>
+                    <option value="Tourism">Tourism</option>
+                </select>
+                <input type="number" id="subject6Score" name="subject6Score" min="0" max="10" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <p>Your APS score is: {{ aps_score }}</p>
+</body>
+</html>
