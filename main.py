@@ -11,7 +11,7 @@ users = {}
 # Define a route for the home page
 @app.route('/')
 def home():
-    return "Welcome to the Flask App!"
+    return render_template('home.html')
 
 # Define a route for the login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -47,6 +47,11 @@ def assistant():
         return render_template('assistant.html', assistant_response=assistant_response)
 
     return render_template('assistant.html')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 
 if __name__ == '__main__':
