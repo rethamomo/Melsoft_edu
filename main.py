@@ -11,7 +11,7 @@ users = {}
 # Define a route for the home page
 @app.route('/')
 def home():
-    return "Welcome to the Flask App!"
+    return render_template('home.html')
 
 # Define a route for the login page
 @app.route('/login', methods=['GET', 'POST'])
@@ -35,6 +35,7 @@ def signup():
         users[username] = password
         return redirect(url_for('login'))
     return render_template('signup.html')
+
 
 @app.route('/dashboard')
 def dashboard():
