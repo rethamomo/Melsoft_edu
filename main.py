@@ -1,6 +1,6 @@
 # main.py
 from flask import Flask, render_template, request, redirect, url_for, session
-from speechd_config import question
+# from speechd_config import question
 
 from API import make_request,greet_user
 from quiz import get_responses, calculate_scores
@@ -59,7 +59,7 @@ def assistant():
 
     return render_template('assistant.html', greeting=greeting_message)
 
-@app.route('calc_APS_score', methods=['GET', 'POST'])
+@app.route('/calc_APS_score', methods=['GET', 'POST'])
 def calc_APS_score():
     if request.method == 'POST':    
         subject1 = request.form['subject1']
