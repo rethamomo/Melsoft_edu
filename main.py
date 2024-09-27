@@ -1,6 +1,9 @@
 # main.py
 from flask import Flask, render_template, request, redirect, url_for, session
+from speechd_config import question
+
 from API import make_request,greet_user
+from quiz import get_responses, calculate_scores
 import os
 
 
@@ -13,6 +16,8 @@ os.environ["GEMINI_API_KEY"] = "AIzaSyDFyfAGt-PRplWy6B-qgk1TCLhBzq2fR1w"
 
 # In-memory user store for demonstration purposes
 users = {}
+
+questions = get_responses()
 
 # Define a route for the home page
 @app.route('/')
@@ -54,6 +59,59 @@ def assistant():
         return render_template('assistant.html', assistant_response=assistant_response, greeting=greeting_message)
 
     return render_template('assistant.html', greeting=greeting_message)
+
+
+@app.route('/start', methods=['GET', 'POST'])
+def start_quiz():
+    session['answers'] = [None] * len(questions)
+    session['current_question'] = 0
+    return redirect(url_for('quiz', question_id=0))
+
+
+
+@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
+def quiz(question_id):
+    if 'answers' not in session:
+        session['answers'] = [None] * len(questions)
+    if 'current_question' not in session:
+        session['current_question'] = 0
+
+    if question_id >= len(questions):
+        return redirect(url_for('result'))  # Redirect to results page if quiz is complete
+
+    question = questions[question_id]
+
+    if request.method == 'POST':
+        if 'next' in request.form:
+            answer = request.form.get(f'q{question_id+1}')
+            if answer is not None:
+                session['answers'][question_id] = int(answer)  # Store the selected value
+                session['current_question'] += 1
+            return redirect(url_for('quiz', question_id=session['current_question']))
+        elif 'previous' in request.form:
+            session['current_question'] -= 1
+            return redirect(url_for('quiz', question_id=session['current_question']))
+        elif 'submit' in request.form:
+            answer = request.form.get(f'q{question_id+1}')
+            if answer is not None:
+                session['answers'][question_id] = int(answer)  # Store the selected value
+            return redirect(url_for('result'))
+
+    return render_template('quiz.html', question=question, question_id=question_id)
+
+
+@app.route('/result')
+def result():
+    responses = session['answers']
+    total = len(questions)
+
+    # Replace None values with 0
+    responses = [0 if response is None else response for response in responses]
+
+    scores = calculate_scores(responses)
+    dominant_style = max(scores, key=scores.get)
+
+    return render_template("result.html", scores=scores, dominant_style=dominant_style)
 
 
 @app.route('/dashboard')

@@ -62,20 +62,7 @@ def get_responses():
         "50. I feel confident when I can see both the big picture and the practical steps involved."
     ]
 
-    responses = []
-    print("Rate each statement from 1 (Never) to 5 (Always).")
-    for question in questions:
-        while True:
-            try:
-                response = int(input(f"{question}\nYour response (1-5): "))
-                if response < 1 or response > 5:
-                    print("Please enter a number between 1 and 5.")
-                else:
-                    responses.append(response)
-                    break
-            except ValueError:
-                print("Invalid input. Please enter a number between 1 and 5.")
-    return responses
+    return questions
 
 
 # Function to calculate scores

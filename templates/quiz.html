@@ -1,53 +1,48 @@
-<!-- templates/quiz.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Method Quiz</title>
+    <title>Quiz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style_quiz.css') }}">
 </head>
 <body>
+    <h2 id="hq"> 50 Questions</h2>
     <div class="wrapper">
         <div class="container">
             <header>
-                <h1>Study Method Quiz</h1>
+                <h3>{{ question }}</h3>
             </header>
-            <main>
-                <form method="post">
-                    <div class="form-group">
-                        <label for="question1">Do you prefer studying alone or in a group?</label>
-                        <select id="question1" name="question1" required>
-                            <option value="alone">Alone</option>
-                            <option value="group">Group</option>
-                        </select>
+            <form method="POST">
+                <div class="form-group">
+                    <label>Select your answer:</label>
+                    <div>
+                        <input type="radio" id="q{{ question_id+1 }}_1" name="q{{ question_id+1 }}" value="1">
+                        <label for="q{{ question_id+1 }}_1">1 (Never)</label>
                     </div>
-                    <div class="form-group">
-                        <label for="question2">Do you find it easier to learn by reading or by doing?</label>
-                        <select id="question2" name="question2" required>
-                            <option value="reading">Reading</option>
-                            <option value="doing">Doing</option>
-                        </select>
+                    <div>
+                        <input type="radio" id="q{{ question_id+1 }}_2" name="q{{ question_id+1 }}" value="2">
+                        <label for="q{{ question_id+1 }}_2">2 (Rarely)</label>
                     </div>
-                    <div class="form-group">
-                        <label for="question3">Do you prefer a structured schedule or a flexible one?</label>
-                        <select id="question3" name="question3" required>
-                            <option value="structured">Structured</option>
-                            <option value="flexible">Flexible</option>
-                        </select>
+                    <div>
+                        <input type="radio" id="q{{ question_id+1 }}_3" name="q{{ question_id+1 }}" value="3">
+                        <label for="q{{ question_id+1 }}_3">3 (Sometimes)</label>
                     </div>
-                    <button type="submit">Submit</button>
-                </form>
-                {% if study_method %}
-                <div class="result">
-                    <h2>Your Best Study Method:</h2>
-                    <p>{{ study_method }}</p>
+                    <div>
+                        <input type="radio" id="q{{ question_id+1 }}_4" name="q{{ question_id+1 }}" value="4">
+                        <label for="q{{ question_id+1 }}_4">4 (Often)</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="q{{ question_id+1 }}_5" name="q{{ question_id+1 }}" value="5">
+                        <label for="q{{ question_id+1 }}_5">5 (Always)</label>
+                    </div>
                 </div>
-                {% endif %}
-            </main>
-            <footer>
-                <p>&copy; 2024 Your Company</p>
-            </footer>
+                <div class="navigation-buttons">
+                    <button type="submit" name="previous" {% if question_id == 0 %} disabled {% endif %}>Previous</button>
+                    <button type="submit" name="next" {% if question_id == questions|length - 1 %}style="display:none;"{% endif %}>Next</button>
+                    <button type="submit" name="submit" {% if question_id != questions|length - 1 %}style="display:none;"{% endif %}>Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
