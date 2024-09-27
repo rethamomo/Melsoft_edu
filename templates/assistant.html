@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Assistant</title>
 </head>
 <body>
-    <form>
+    <h1>AI Assistant</h1>
+    <form method="post">
+        <label for="user_input">Ask the assistant:</label>
+        <input type="text" id="user_input" name="user_input">
+        <button type="submit">Submit</button>
+        <br>
+        <label for="subject">What is your subject?: </label>
+        <input type="text" id="subject" name="subject">
+        <br>
         <label for="proficiency">What is your proficiency: </label>
         <input type="text" id="proficiency" name="proficiency">
         <br>
-        <label for="security-question">What is your question?: </label>
-        <input type="text" id="security-question" name="security-question">
+        <button type="submit">Submit</button>
     </form>
+    <h2>Response:</h2>
+    <p>{{ assistant_response }}</p>
 </body>
+</html>
