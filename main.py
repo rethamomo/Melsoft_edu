@@ -1,5 +1,6 @@
 # main.py
 from flask import Flask, render_template, request, redirect, url_for, session
+from API import make_request
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -41,9 +42,9 @@ def assistant():
     if request.method == 'POST':
         subject = request.form['subject']
         proficiency = request.form['proficiency']
-        question = request.form['question']
+        user_input = request.form['user_input']
 
-        assistant_response = assistant(subject, proficiency, question)
+        assistant_response = make_request(subject, proficiency, user_input)
         return render_template('assistant.html', assistant_response=assistant_response)
 
     return render_template('assistant.html')
