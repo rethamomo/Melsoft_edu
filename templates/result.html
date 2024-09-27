@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Study Method Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_quiz.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <header>
+                <h1>Your Best Study Method</h1>
+            </header>
+
+            <div class="result">
+                <h2>Your dominant learning style is: {{ dominant_style }}</h2>
+                <p>Here are your scores:</p>
+                <ul>
+                    <li>Active: {{ scores['Active'] }}</li>
+                    <li>Reflective: {{ scores['Reflective'] }}</li>
+                    <li>Theoretical: {{ scores['Theoretical'] }}</li>
+                    <li>Practical: {{ scores['Practical'] }}</li>
+                </ul>
+            </div>
+
+            <footer>
+                <p>Thank you for taking the quiz!</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
