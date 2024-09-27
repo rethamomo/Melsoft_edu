@@ -8,8 +8,8 @@ import os
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
 
-# Configure the API key
-os.environ["GEMINI_API_KEY"] = "AIzaSyDFyfAGt-PRplWy6B-qgk1TCLhBzq2fR1w"
+# # Configure the API key
+# os.environ["GEMINI_API_KEY"] = "AIzaSyDFyfAGt-PRplWy6B-qgk1TCLhBzq2fR1w"
 
 # In-memory user store for demonstration purposes
 users = {}
