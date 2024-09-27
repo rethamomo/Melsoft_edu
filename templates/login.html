@@ -10,7 +10,7 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='style_login.css') }}"
     />
   </head>
   <body>
@@ -29,15 +29,23 @@
     {% endif %} -->
 
     <div class="form-signin w-100 m-auto">
-      <form class="form">
-        <h1 class="h3 mb-3 fw-normal align-center">Please Login</h1>
+      <form class="form rounded shadow">
+        <h1 class="h3 mb-3 fw-normal align-center">Login</h1>
+
+        {% if error %}
+        <div
+          class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3"
+        >
+          Example element with utilities
+        </div>
+        {% endif %}
 
         <div class="form-floating">
           <input
-            type="email"
-            class="form-control"
+            type="text"
+            class="form-control mb-2"
             id="floatingInput"
-            placeholder="name@example.com"
+            placeholder="Username"
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -51,6 +59,12 @@
           <label for="floatingPassword">Password</label>
         </div>
 
+        <div class="form-floating mt-3 mb-3">
+          <a href="{{ url_for('signup') }}">
+            <small>I don't have an Account.</small>
+          </a>
+        </div>
+
         <div class="form-check text-start my-3">
           <input
             class="form-check-input"
@@ -62,6 +76,7 @@
             Remember me
           </label>
         </div>
+
         <button class="btn btn-primary w-100 py-2" type="submit">
           Sign in
         </button>
