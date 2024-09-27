@@ -36,6 +36,18 @@ def signup():
         return redirect(url_for('login'))
     return render_template('signup.html')
 
+@app.route('/assistant', methods=['GET', 'POST'])
+def assistant():
+    if request.method == 'POST':
+        subject = request.form['subject']
+        proficiency = request.form['proficiency']
+        question = request.form['question']
+
+        assistant_response = assistant(subject, proficiency, question)
+        return render_template('assistant.html', assistant_response=assistant_response)
+
+    return render_template('assistant.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
