@@ -45,7 +45,7 @@
 
     <div class="form-signin w-100 m-auto">
       <form class="form rounded shadow">
-        <h1 class="h3 mb-3 fw-normal align-center">Login</h1>
+        <h1 class="h3 mb-3 fw-normal align-center">Sign Up</h1>
 
         {% if error %}
         <div
@@ -61,6 +61,7 @@
             class="form-control mb-2"
             id="floatingInput"
             placeholder="Username"
+            required
           />
           <label for="floatingInput">Username</label>
         </div>
@@ -71,6 +72,7 @@
             class="form-control mb-2"
             id="floatingInput"
             placeholder="Email"
+            required
           />
           <label for="floatingInput">Email</label>
         </div>
@@ -81,6 +83,7 @@
             class="form-control mb-2"
             id="floatingInput"
             placeholder="Phone Number"
+            required
           />
           <label for="floatingInput">Phone Number</label>
         </div>
@@ -91,6 +94,7 @@
             class="form-control mb-2"
             id="floatingInput"
             placeholder="Password"
+            required
           />
           <label for="floatingInput">Password</label>
         </div>
@@ -101,12 +105,15 @@
             class="form-control mb-2"
             id="floatingInput"
             placeholder="Confirm Password"
+            required
           />
           <label for="floatingInput">Confirm Password</label>
         </div>
 
         <div class="form-floating mt-3 mb-3">
-          <a href="{{ url_for('login') }}">Already have an Account.</a>
+          <a href="{{ url_for('login') }}">
+            <small>Already have an Account.</small>
+          </a>
         </div>
 
         <button class="btn btn-primary w-100 py-2" type="submit">
