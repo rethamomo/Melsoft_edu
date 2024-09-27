@@ -1,10 +1,15 @@
 # main.py
 from flask import Flask, render_template, request, redirect, url_for, session
-from API import make_request
+from API import make_request,greet_user
+import os
+
 
 # Create a Flask application instance
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'
+
+# Configure the API key
+os.environ["GEMINI_API_KEY"] = "AIzaSyDFyfAGt-PRplWy6B-qgk1TCLhBzq2fR1w"
 
 # In-memory user store for demonstration purposes
 users = {}
@@ -39,16 +44,16 @@ def signup():
 
 @app.route('/assistant', methods=['GET', 'POST'])
 def assistant():
-    greeting = greeting()
+    greeting_message = greet_user()  # Renamed variable
     if request.method == 'POST':
         subject = request.form['subject']
         proficiency = request.form['proficiency']
         user_input = request.form['user_input']
 
         assistant_response = make_request(subject, proficiency, user_input)
-        return render_template('assistant.html', assistant_response=assistant_response)
+        return render_template('assistant.html', assistant_response=assistant_response, greeting=greeting_message)
 
-    return render_template('assistant.html', greeting)
+    return render_template('assistant.html', greeting=greeting_message)
 
 
 @app.route('/dashboard')
