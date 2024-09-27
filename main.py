@@ -39,6 +39,7 @@ def signup():
 
 @app.route('/assistant', methods=['GET', 'POST'])
 def assistant():
+    greeting = greeting()
     if request.method == 'POST':
         subject = request.form['subject']
         proficiency = request.form['proficiency']
@@ -47,7 +48,7 @@ def assistant():
         assistant_response = make_request(subject, proficiency, user_input)
         return render_template('assistant.html', assistant_response=assistant_response)
 
-    return render_template('assistant.html')
+    return render_template('assistant.html', greeting)
 
 
 @app.route('/dashboard')
