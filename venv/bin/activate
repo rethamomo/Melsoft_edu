@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/mosa.../PycharmProjects/Melsoft_edu/venv"
+VIRTUAL_ENV="/home/tebogo/code/Melsoft_edu/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
