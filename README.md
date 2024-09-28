@@ -68,3 +68,22 @@ To update the `requirements.txt` file with new dependencies, follow these steps:
 - `requirements.txt`: File listing the required Python packages.
 
 
+<!--
+just for Dylan.
+have to do this each time
+
+ python -m venv venv       
+
+ .\venv\Scripts\activate                                                    
+
+ pip install flask  
+ 
+  pip install google-generativeai       
+
+   pip install google                                           
+
+$env:GEMINI_API_KEY="AIzaSyDFyfAGt-PRplWy6B-qgk1TCLhBzq2fR1w"
+
+even when i run pip install -r requirements.txt
+
+-->

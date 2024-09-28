@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 
 from API import make_request,greet_user
 from quiz import get_responses, calculate_scores
+from APS import calculate_APS_score
 import os
 
 
@@ -62,14 +63,10 @@ def assistant():
 @app.route('/calc_APS_score', methods=['GET', 'POST'])
 def calc_APS_score():
     if request.method == 'POST':    
-        subject1 = request.form['subject1']
-        subject2 = request.form['subject2']
-        subject3 = request.form['subject3']
-        subject4 = request.form['subject4']
-        subject5 = request.form['subject5']
-        subject6 = request.form['subject6']
+        
+        calc_APS_score = calculate_APS_score()
 
-        return render_template("calc_APS_score.html", aps_score = subject1 + subject2 + subject3 + subject4 + subject5 + subject6)
+        return render_template("calc_APS_score.html", APS=calc_APS_score)
     
     return render_template('calc_APS_score.html')
 
