@@ -62,12 +62,20 @@ def assistant():
 
 @app.route('/calc_APS_score', methods=['GET', 'POST'])
 def calc_APS_score():
-    if request.method == 'POST':    
-        
-        calc_APS_score = calculate_APS_score()
-
-        return render_template("calc_APS_score.html", APS=calc_APS_score)
-    
+    if request.method == 'POST':
+        if 'report' in request.files:
+            report = request.files['report']
+            if report.content_type in ['image/jpeg', 'image/png', 'application/pdf']:
+                try:
+                    # Process the file and calculate APS score
+                    aps_score = calculate_APS_score()
+                    return render_template('calc_APS_score.html', APS=aps_score)
+                except Exception as e:
+                    return f"An error occurred while processing the file: {str(e)}"
+            else:
+                return "Invalid file type. Please upload a JPG, PNG, or PDF file."
+        else:
+            return "No file uploaded."
     return render_template('calc_APS_score.html')
 
 

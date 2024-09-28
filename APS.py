@@ -23,15 +23,19 @@ def calculate_APS_score():
 
             # Upload the file to the Gemini API
             uploaded_file = genai.upload_file(temp_file_path)
+            print(75,uploaded_file,73,temp_file_path)
 
             # Create a prompt for Gemini
             prompt = "From the report card content, calculate the APS and provide a breakdown of the calculation for a South African student."
-
+            print("yee")
             # Send the prompt along with the uploaded file content to the Gemini API for content generation
+            # rog=model.generate_content("how many sheep do americans own")
             response = model.generate_content([uploaded_file], prompt)
+            print("haw")
             
             # Return the response content if available
-            return response.get('content', 'Failed to get a valid response from Gemini API')
+            return response.text
+            # return rog.text
 
         except Exception as e:
             # Handle any exceptions and return a generic error message
