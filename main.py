@@ -22,7 +22,7 @@ questions = get_responses()
 # Define a route for the home page
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 # Define a route for the login page
 @app.route('/login', methods=['GET', 'POST'])
