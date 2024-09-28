@@ -25,12 +25,16 @@ def calculate_APS_score():
             uploaded_file = genai.upload_file(temp_file_path)
             print(75,uploaded_file,73,temp_file_path)
 
+            
+            file_uri = uploaded_file['uri']  # Extract the URI from the uploaded file metadata
+            print(file_uri)
+
+
             # Create a prompt for Gemini
-            prompt = "From the report card content, calculate the APS and provide a breakdown of the calculation for a South African student."
-            print("yee")
+            prompt = "From the report card content, calculate the APS and provide a breakdown of the calculation for a South African student.\n\n"
             # Send the prompt along with the uploaded file content to the Gemini API for content generation
             # rog=model.generate_content("how many sheep do americans own")
-            response = model.generate_content([uploaded_file], prompt)
+            response = model.generate_content([prompt,uploaded_file])
             print("haw")
             
             # Return the response content if available

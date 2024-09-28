@@ -24,3 +24,22 @@ def make_request(subject, proficiency, question):
     
     response = model.generate_content("explain this " + subject + " to me at this proficiency " + proficiency + ": " + question)
     return response.text
+
+def communicate_with_gemini(user_input, conversation_history=[]):
+    # Maintain the conversation context by adding previous history
+    conversation_history.append(user_input)  # Add the latest user input to the conversation
+
+    # Create a conversation prompt
+    prompt = "\n".join(conversation_history)  # Join all previous inputs and responses
+
+    # Send the prompt to the Gemini model and get the response
+    response = model.generate_content([prompt])
+
+    # Get the text from the Gemini response
+    gemini_response = response.text
+
+    # Add the response to the conversation history
+    conversation_history.append(gemini_response)
+
+    # Return the latest response from Gemini
+    return gemini_response, conversation_history

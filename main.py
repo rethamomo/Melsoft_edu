@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 # from speechd_config import question
 
-from API import make_request,greet_user
+from API import make_request,greet_user,communicate_with_gemini
 from quiz import get_responses, calculate_scores
 from APS import calculate_APS_score
 import os
@@ -77,6 +77,32 @@ def calc_APS_score():
         else:
             return "No file uploaded."
     return render_template('calc_APS_score.html')
+
+@app.route('/chat', methods=['GET', 'POST'])
+def chat():
+    if request.method == 'POST':
+        user_input = request.form.get('user_input')
+
+        # Initialize conversation history if it doesn't exist
+        if 'conversation_history' not in session:
+            session['conversation_history'] = []
+
+        try:
+            # Get the conversation history from the session
+            conversation_history = session['conversation_history']
+
+            # Communicate with Gemini and get the response and updated history
+            gemini_response, updated_history = communicate_with_gemini(user_input, conversation_history)
+
+            # Update the session with the new conversation history
+            session['conversation_history'] = updated_history
+
+            return render_template('chat.html', conversation=updated_history)
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
+    return render_template('chat.html', conversation=session.get('conversation_history', []))
+
+
 
 
 @app.route('/start', methods=['GET', 'POST'])
