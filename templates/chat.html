@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Gemini</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_chat.css') }}">
+
+</head>
+<body>
+
+    <!-- Chat container for messages -->
+    <div class="chat-container">
+        {% if conversation %}
+            {% for message in conversation %}
+                <!-- Render user messages on the right -->
+                {% if message.startswith('You:') %}
+                    <div class="message user">{{ message[4:] }}</div> <!-- Removes "You:" prefix in display -->
+                {% else %}
+                    <!-- Render Gemini messages on the left -->
+                    <div class="message gemini">{{ message[8:] }}</div> <!-- Removes "Gemini:" prefix in display -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Input form fixed at the bottom -->
+    <div class="input-form">
+        <form method="post" action="/chat">
+            <input type="text" name="user_input" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+            <button type="button" class="clear-chat-btn" onclick="clearChat()">Clear Chat</button>
+        </form>
+    </div>
+
+    <script>
+        function clearChat() {
+            if (confirm("Are you sure you want to clear the chat?")) {
+                fetch('/clear_chat', { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload(); // Reload to get a fresh chat
+                        } else {
+                            alert("Error clearing chat. Please try again.");
+                        }
+                    });
+            }
+        }
+
+        function scrollToBottom() {
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    
+        // Scroll to the bottom when the page loads
+        window.onload = scrollToBottom;
+    
+        // Optionally, you can also trigger it after each message is rendered
+        window.addEventListener('load', scrollToBottom);
+    </script>
+</body>
+</html>
